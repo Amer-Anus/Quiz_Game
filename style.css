@@ -37,5 +37,49 @@ body {
 
 /* START SCREEN */
 .start-screen h1{
-    
+    color : #e86a33;
+    margin-bottom : 20px;
+    font-size: 2.5rem;
 }
+
+#start-screen p{
+    color : #666;
+    margin-bottom : 30px;
+    font-size: 1.1rem;
+}
+
+.quiz-header{
+    margin-bottom : 2rem;
+}
+
+#question-text{
+    color : #333;
+    font-size : 1.5rem;
+    margin-bottom : 1rem;
+    line-height : 1.4;
+}
+
+.quiz-info{
+    display : flex;
+    justify-content : space-between;
+    color : #666;
+    margin-bottom : 10px;
+}
+
+.answer-container{
+    display : flex;
+    flex-direction : column;
+    gap : 10px;
+    margin-bottom : 25px;
+}
+
+.answer-btn{
+    background-color : #f8f0e5;
+    color : #333;
+    border : 2px solid #eadbc8;
+    padding : 1rem;
+    border-radius : 10px;
+    cursor : pointer;
+    text-align : left;
+    transition : all 0.3s ease;
+}
