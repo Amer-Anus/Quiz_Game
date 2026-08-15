@@ -64,3 +64,88 @@ const quizQuestions = [
 ];
 
 
+let currentQuestionIndex = 0;
+let score = 0;
+let answerDisabled = false;
+
+totalQuestionsSpan.textContent = quizQuestions.length;
+maxScoreSpan.textContent = quizQuestions.length
+
+
+startButton.addEventListener("click", startQuiz);
+restartButton.addEventListener("click", restartQuiz);
+
+function startQuiz(){
+
+    currentQuestionIndex = 0;
+    score = 0;
+    scoreSpan.textContent = score;
+
+    startScreen.classList.remove("active");
+    quizScreen.classList.add("active")
+
+    showQuestion()
+}
+
+function showQuestion(){
+
+    answerDisabled = false;
+
+    const currentQuestion = quizQuestions[currentQuestionIndex]
+
+    currentQuestionSpan.textContent = currentQuestionIndex + 1
+
+    const progressPercent = (currentQuestionIndex / quizQuestions.length) * 100;
+    progressBar.style.width = progressPercent + "%";
+
+    questionText.textContent = currentQuestion.question
+
+
+    answerContainer.innerHTML = "";
+
+    currentQuestion.answers.forEach(answer => {
+        const button = document.createElement("button")
+        button.textContent = answer.text
+        button.classList.add("answer-btn")
+
+        button.dataset.correct = answer.correct
+
+        button.addEventListener("click", selectAnswer)
+
+        answersContainer.appendChild(button)
+    })
+}
+
+function selectAnswer(event) {
+
+    if(answersDisabeled) return
+
+    answerDisabled = true;
+
+    const selectedButton = event.target;
+    const isCorrect = selectedButton.dataset.correct === "true";
+
+    Array.from(answerContainer.children).forEach(button => {
+        if(button.dataset.correct === "true") {
+            button.classList.add("correct");
+        } else if(button === selectedButton) {
+            button.classList.add("incorrect");
+        }
+    });
+
+    if(isCorrect) {
+        score++;
+        scoreSpan.textContent = score;
+    }
+
+    setTimeout(() => {
+        currentQuestionIndex++;
+
+
+        if(currentQuestionIndex < quizQuestions.length) {
+            showQuestion();
+        } else {
+            showResult();
+        }
+    },1000);
+}
