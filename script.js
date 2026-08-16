@@ -40,7 +40,7 @@ const quizQuestions = [
             { text: "Pacific Ocean", correct: true },
             { text: "Atlantic Ocean", correct: false },
             { text: "Indian Ocean", correct: false },
-            { text: "Pacific Ocean", correct: false },
+            { text: "Arctic Ocean", correct: false },
         ],
     },
      {
@@ -60,7 +60,7 @@ const quizQuestions = [
             { text: "Au", correct: true },  
             { text: "Ag", correct: false },
         ],
-    },,
+    },
 ];
 
 
@@ -125,7 +125,7 @@ function selectAnswer(event) {
     const selectedButton = event.target;
     const isCorrect = selectedButton.dataset.correct === "true";
 
-    Array.from(answerContainer.children).forEach(button => {
+    Array.from(answersContainer.children).forEach(button => {
         if(button.dataset.correct === "true") {
             button.classList.add("correct");
         } else if(button === selectedButton) {
@@ -145,7 +145,7 @@ function selectAnswer(event) {
         if(currentQuestionIndex < quizQuestions.length) {
             showQuestion();
         } else {
-            showResult();
+            showResults();
         }
     },1000);
 }
