@@ -21,11 +21,11 @@ const quizQuestions = [
         answers: [
             { text: "Berlin", correct: false },
             { text: "Madrid", correct: false },
-            { text: "Paris", correct: true },   
+            { text: "Paris", correct: true },
             { text: "London", correct: false },
         ],
     },
-     {
+    {
         question: "Which planet is known as the Red Planet?",
         answers: [
             { text: "Venus", correct: false },
@@ -34,7 +34,7 @@ const quizQuestions = [
             { text: "Mars", correct: true },
         ],
     },
-     {
+    {
         question: "What is the largest ocean on Earth?",
         answers: [
             { text: "Pacific Ocean", correct: true },
@@ -43,21 +43,21 @@ const quizQuestions = [
             { text: "Arctic Ocean", correct: false },
         ],
     },
-     {
+    {
         question: "Which of this is NOT a coding language?",
         answers: [
             { text: "Java", correct: false },
             { text: "Python", correct: false },
-            { text: "Banana", correct: true },  
+            { text: "Banana", correct: true },
             { text: "JavaScript", correct: false },
         ],
     },
-     {
+    {
         question: "What is the chemical symbol for gold?",
         answers: [
             { text: "Go", correct: false },
             { text: "Gd", correct: false },
-            { text: "Au", correct: true },  
+            { text: "Au", correct: true },
             { text: "Ag", correct: false },
         ],
     },
@@ -75,7 +75,7 @@ maxScoreSpan.textContent = quizQuestions.length
 startButton.addEventListener("click", startQuiz);
 restartButton.addEventListener("click", restartQuiz);
 
-function startQuiz(){
+function startQuiz() {
 
     currentQuestionIndex = 0;
     score = 0
@@ -87,7 +87,7 @@ function startQuiz(){
     showQuestion()
 }
 
-function showQuestion(){
+function showQuestion() {
 
     answersDisabled = false;
 
@@ -118,7 +118,7 @@ function showQuestion(){
 
 function selectAnswer(event) {
 
-    if(answersDisabled) return
+    if (answersDisabled) return
 
     answersDisabled = true
 
@@ -126,14 +126,14 @@ function selectAnswer(event) {
     const isCorrect = selectedButton.dataset.correct === "true";
 
     Array.from(answersContainer.children).forEach(button => {
-        if(button.dataset.correct === "true") {
+        if (button.dataset.correct === "true") {
             button.classList.add("correct");
-        } else if(button === selectedButton) {
+        } else if (button === selectedButton) {
             button.classList.add("incorrect");
         }
     });
 
-    if(isCorrect) {
+    if (isCorrect) {
         score++;
         scoreSpan.textContent = score;
     }
@@ -142,12 +142,12 @@ function selectAnswer(event) {
         currentQuestionIndex++;
 
 
-        if(currentQuestionIndex < quizQuestions.length) {
+        if (currentQuestionIndex < quizQuestions.length) {
             showQuestion();
         } else {
             showResults();
         }
-    },1000);
+    }, 1000);
 }
 
 function showResults() {
@@ -156,15 +156,15 @@ function showResults() {
 
     finalScoreSpan.textContent = score;
 
-    const percentage = (score/quizQuestions.length) * 100
+    const percentage = (score / quizQuestions.length) * 100
 
-    if(percentage === 100) {
+    if (percentage === 100) {
         resultMessage.textContent = "Perfect score! Well done!";
-    } else if(percentage >= 80) {
+    } else if (percentage >= 80) {
         resultMessage.textContent = "Great job! You scored well!";
-    } else if(percentage >= 60) {
+    } else if (percentage >= 60) {
         resultMessage.textContent = "Good effort! Keep practicing!";
-    } else if(percentage >= 40) {
+    } else if (percentage >= 40) {
         resultMessage.textContent = "Not bad! Try again!";
     } else {
         resultMessage.textContent = "Keep trying! You'll do better!";
